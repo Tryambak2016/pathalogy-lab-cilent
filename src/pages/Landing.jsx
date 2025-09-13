@@ -2,7 +2,7 @@ import React from "react";
 import { User, Lock } from "lucide-react";
 import microscope from "../assets/image.png";
 import logo from "../assets/metacore.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Landing = () => {
   const [formData, setFormData] = React.useState({
@@ -11,6 +11,7 @@ const Landing = () => {
   });
   const [errors, setErrors] = React.useState({});
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const navigate = useNavigate();
 
   const validate = () => {
     const newErrors = {};
@@ -40,8 +41,13 @@ const Landing = () => {
     if (Object.keys(validationErrors).length === 0) {
       setIsSubmitting(true);
       setTimeout(() => {
-        setIsSubmitting(false);
-        alert("Login successful!");
+        if (formData.email ==="admin@metacore.com" && formData.password === "metacore@admin123") {
+          navigate("/dashboard");
+        } else {
+          setErrors({
+            general: "Invalid email or password",
+          });
+        }
       }, 2000);
     } else {
       setErrors(validationErrors);
