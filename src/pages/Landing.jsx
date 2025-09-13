@@ -43,6 +43,7 @@ const Landing = () => {
       setTimeout(() => {
         if (formData.email ==="admin@metacore.com" && formData.password === "metacore@admin123") {
           navigate("/dashboard");
+          localStorage.setItem("token", "ezydhlls_slldfushsvusetojeifsljbshusuubdvforisdhliuagvbliwerherhtuiergvblweurglewriug");
         } else {
           setErrors({
             general: "Invalid email or password",
