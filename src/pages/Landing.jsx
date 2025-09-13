@@ -40,8 +40,7 @@ const Landing = () => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
       setIsSubmitting(true);
-      setTimeout(() => {
-        if (formData.email ==="admin@metacore.com" && formData.password === "metacore@admin123") {
+      if (formData.email ==="admin@metacore.com" && formData.password === "metacore@admin123") {
           navigate("/dashboard");
           localStorage.setItem("token", "ezydhlls_slldfushsvusetojeifsljbshusuubdvforisdhliuagvbliwerherhtuiergvblweurglewriug");
         } else {
@@ -49,7 +48,6 @@ const Landing = () => {
             general: "Invalid email or password",
           });
         }
-      }, 2000);
     } else {
       setErrors(validationErrors);
     }
