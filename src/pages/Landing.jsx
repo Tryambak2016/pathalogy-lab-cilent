@@ -1,5 +1,6 @@
 import React from "react";
 import { User, Lock } from "lucide-react";
+import { useAuth } from "../guard/AuthContext";
 import microscope from "../assets/image.png";
 import logo from "../assets/metacore.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,7 +13,9 @@ const Landing = () => {
   const [errors, setErrors] = React.useState({});
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth(); // ✅ get login function from context
 
+  // Validation function
   const validate = () => {
     const newErrors = {};
     if (!formData.email) {
@@ -30,24 +33,36 @@ const Landing = () => {
     return newErrors;
   };
 
+  // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  // Handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validate();
+
     if (Object.keys(validationErrors).length === 0) {
       setIsSubmitting(true);
-      if (formData.email ==="admin@metacore.com" && formData.password === "metacore@admin123") {
+      setErrors({});
+
+      setTimeout(() => {
+        if (
+          formData.email === "admin@metacore.com" &&
+          formData.password === "metacore@admin123"
+        ) {
+          const fakeToken =
+            "ezydhlls_slldfushsvusetojeifsljbshusuubdvforisdhliuagvbliwerherhtuiergvblweurglewriug";
+
+          login(fakeToken); // ✅ update context state
           navigate("/dashboard");
-          localStorage.setItem("token", "ezydhlls_slldfushsvusetojeifsljbshusuubdvforisdhliuagvbliwerherhtuiergvblweurglewriug");
         } else {
-          setErrors({
-            general: "Invalid email or password",
-          });
+          setErrors({ general: "Invalid email or password" });
+          setIsSubmitting(false);
         }
+      }, 2000);
     } else {
       setErrors(validationErrors);
     }
@@ -64,15 +79,15 @@ const Landing = () => {
         <div className="relative z-10 space-y-2 max-w-lg">
           <h1 className="text-4xl font-semibold leading-tight">Metacore Pro</h1>
           <p className="text-lg">
-            Advanced pathology laboratory management system for modern healthcare
-            facilities
+            Advanced pathology laboratory management system for modern
+            healthcare facilities
           </p>
         </div>
       </div>
 
       {/* Right Panel - Login */}
       <div className="w-full lg:w-1/2 min-h-screen flex items-center justify-center bg-pink-50 px-4">
-        <div className="w-full max-w-md"> {/* reduced form width */}
+        <div className="w-full max-w-md">
           <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden border border-blue-200">
             {/* Header */}
             <div className="p-6 text-center bg-gradient-to-r from-purple-400 to-pink-400">
@@ -89,6 +104,12 @@ const Landing = () => {
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="p-6 space-y-5">
+              {errors.general && (
+                <p className="text-red-600 text-center text-sm mb-2">
+                  {errors.general}
+                </p>
+              )}
+
               <div className="space-y-4">
                 {/* Email */}
                 <div>
@@ -160,7 +181,9 @@ const Landing = () => {
                     type="checkbox"
                     className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
                   />
-                  <span className="ml-2 text-sm text-gray-700">Remember me</span>
+                  <span className="ml-2 text-sm text-gray-700">
+                    Remember me
+                  </span>
                 </label>
                 <Link
                   to="/forgot-password"

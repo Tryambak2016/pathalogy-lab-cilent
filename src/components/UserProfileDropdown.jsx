@@ -23,6 +23,7 @@ const UserProfileDropdown = () => {
 
   const handleLogout = () => {
     // Implement logout logic here
+    localStorage.removeItem('token');
     navigate("/");
   };
 
