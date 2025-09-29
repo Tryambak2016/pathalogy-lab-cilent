@@ -44,6 +44,7 @@ const AddTestFormModal = ({ isOpen, onClose, onSubmit }) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" onClose={onClose} className="relative z-50">
+        {/* Background Overlay */}
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-200"
@@ -56,7 +57,8 @@ const AddTestFormModal = ({ isOpen, onClose, onSubmit }) => {
           <div className="fixed inset-0 bg-black/40 backdrop-blur-sm" />
         </Transition.Child>
 
-        <div className="fixed inset-0 flex items-center justify-center p-4">
+        {/* Modal Container */}
+        <div className="fixed inset-0 flex items-center justify-center p-2 sm:p-4">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-200"
@@ -66,9 +68,11 @@ const AddTestFormModal = ({ isOpen, onClose, onSubmit }) => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <Dialog.Panel className="w-full max-w-3xl rounded-2xl bg-white p-6 shadow-2xl">
+            {/* Responsive Modal Panel */}
+            <Dialog.Panel className="w-full max-w-3xl h-full sm:h-auto sm:max-h-[90vh] overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl">
+              {/* Header */}
               <div className="flex justify-between items-center border-b pb-3 mb-5">
-                <Dialog.Title className="text-2xl font-semibold text-gray-800">
+                <Dialog.Title className="text-lg sm:text-2xl font-semibold text-gray-800">
                   🧪 Add New Test Report
                 </Dialog.Title>
                 <button type="button" onClick={onClose}>
@@ -76,9 +80,10 @@ const AddTestFormModal = ({ isOpen, onClose, onSubmit }) => {
                 </button>
               </div>
 
+              {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Patient Info */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700">
                       Patient Name
@@ -89,8 +94,7 @@ const AddTestFormModal = ({ isOpen, onClose, onSubmit }) => {
                       value={formData.patient}
                       onChange={handleChange}
                       required
-                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm 
-                        px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                       placeholder="Enter patient name"
                     />
                   </div>
@@ -104,14 +108,13 @@ const AddTestFormModal = ({ isOpen, onClose, onSubmit }) => {
                       value={formData.testDate}
                       onChange={handleChange}
                       required
-                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm 
-                        px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
                 </div>
 
                 {/* Category */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700">
                       Category
@@ -122,8 +125,7 @@ const AddTestFormModal = ({ isOpen, onClose, onSubmit }) => {
                       value={formData.category}
                       onChange={handleChange}
                       required
-                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm 
-                        px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                       placeholder="e.g. Hematology"
                     />
                   </div>
@@ -136,15 +138,14 @@ const AddTestFormModal = ({ isOpen, onClose, onSubmit }) => {
                       name="subCategory"
                       value={formData.subCategory}
                       onChange={handleChange}
-                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm 
-                        px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                       placeholder="Optional"
                     />
                   </div>
                 </div>
 
                 {/* Test Info */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700">
                       Test Name
@@ -155,8 +156,7 @@ const AddTestFormModal = ({ isOpen, onClose, onSubmit }) => {
                       value={formData.testName}
                       onChange={handleChange}
                       required
-                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm 
-                        px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                       placeholder="e.g. Hemoglobin"
                     />
                   </div>
@@ -170,8 +170,7 @@ const AddTestFormModal = ({ isOpen, onClose, onSubmit }) => {
                       value={formData.value}
                       onChange={handleChange}
                       required
-                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm 
-                        px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                       placeholder="e.g. 13.5"
                     />
                   </div>
@@ -185,8 +184,7 @@ const AddTestFormModal = ({ isOpen, onClose, onSubmit }) => {
                       value={formData.unit}
                       onChange={handleChange}
                       required
-                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm 
-                        px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                       placeholder="e.g. g/dL"
                     />
                   </div>
@@ -203,8 +201,7 @@ const AddTestFormModal = ({ isOpen, onClose, onSubmit }) => {
                     value={formData.normalRange}
                     onChange={handleChange}
                     required
-                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm 
-                      px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                     placeholder="e.g. 12 - 16"
                   />
                 </div>
@@ -219,27 +216,23 @@ const AddTestFormModal = ({ isOpen, onClose, onSubmit }) => {
                     rows="3"
                     value={formData.notes}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm 
-                      px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm px-4 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                     placeholder="Additional remarks..."
                   ></textarea>
                 </div>
 
                 {/* Buttons */}
-                <div className="flex justify-end space-x-3 pt-4 border-t">
+                <div className="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-3 pt-4 border-t">
                   <button
                     type="button"
                     onClick={onClose}
-                    className="px-4 py-2 text-sm font-medium text-gray-700 rounded-lg 
-                      border border-gray-300 hover:bg-gray-100 transition"
+                    className="px-4 py-2 text-sm font-medium text-gray-700 rounded-lg border border-gray-300 hover:bg-gray-100 transition"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="px-5 py-2 text-sm font-medium text-white rounded-lg 
-                      bg-purple-600 shadow-md 
-                      hover:bg-purple-700 transition"
+                    className="px-5 py-2 text-sm font-medium text-white rounded-lg bg-purple-600 shadow-md hover:bg-purple-700 transition"
                   >
                     Save Test
                   </button>
