@@ -48,7 +48,7 @@ const TestReports = () => {
           <h1 className="text-3xl font-extrabold text-gray-900">Test Reports</h1>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="flex items-center px-4 py-2 bg-purple-600 text-white font-medium rounded-lg shadow-md hover:bg-purple-700 transition duration-300"
+            className="flex items-center px-4 py-2 bg-purple-600 text-white font-medium rounded-lg shadow-md hover:bg-purple-700 transition duration-300 "
           >
             <Plus className="h-5 w-5 mr-2" />
             Add New Test
