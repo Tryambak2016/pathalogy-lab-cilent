@@ -157,9 +157,9 @@ const Report = () => {
 
   return (
     <DashboardLayout activeMenu="Reports">
-      <div className="p-6 ml-5 pt-5 bg-pink-50 min-h-screen">
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h1 className="text-2xl font-bold text-gray-800 mb-6">
+      <div className="p-4 md:p-6 md:ml-5 pt-5 bg-pink-50 min-h-screen">
+        <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+          <h1 className="text-xl md:text-2xl font-bold text-gray-800 mb-6">
             Generate Reports
           </h1>
 
@@ -173,7 +173,7 @@ const Report = () => {
                 <input
                   type="text"
                   placeholder="Search patients by name or code..."
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent text-sm md:text-base"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -182,77 +182,79 @@ const Report = () => {
 
             {/* Patient List */}
             <div className="border border-gray-200 rounded-lg overflow-hidden">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Code
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Name
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Age
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Gender
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Tests
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredPatients.map((patient) => (
-                    <tr
-                      key={patient.id}
-                      className={`hover:bg-gray-50 ${
-                        selectedPatient?.id === patient.id ? "bg-blue-50" : ""
-                      }`}
-                    >
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {patient.code}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                        {patient.name}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                        {patient.age}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                        {patient.gender}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-700">
-                        {patient.tests.join(", ")}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <button
-                          onClick={() => handleSelectPatient(patient)}
-                          className="text-blue-600 hover:text-blue-800"
-                        >
-                          Select
-                        </button>
-                      </td>
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-4 py-3 md:px-6 md:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Code
+                      </th>
+                      <th className="px-4 py-3 md:px-6 md:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Name
+                      </th>
+                      <th className="px-4 py-3 md:px-6 md:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
+                        Age
+                      </th>
+                      <th className="px-4 py-3 md:px-6 md:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">
+                        Gender
+                      </th>
+                      <th className="px-4 py-3 md:px-6 md:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">
+                        Tests
+                      </th>
+                      <th className="px-4 py-3 md:px-6 md:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Action
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {filteredPatients.map((patient) => (
+                      <tr
+                        key={patient.id}
+                        className={`hover:bg-gray-50 ${
+                          selectedPatient?.id === patient.id ? "bg-blue-50" : ""
+                        }`}
+                      >
+                        <td className="px-4 py-4 md:px-6 md:py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          {patient.code}
+                        </td>
+                        <td className="px-4 py-4 md:px-6 md:py-4 whitespace-nowrap text-sm text-gray-700">
+                          {patient.name}
+                        </td>
+                        <td className="px-4 py-4 md:px-6 md:py-4 whitespace-nowrap text-sm text-gray-700 hidden sm:table-cell">
+                          {patient.age}
+                        </td>
+                        <td className="px-4 py-4 md:px-6 md:py-4 whitespace-nowrap text-sm text-gray-700 hidden md:table-cell">
+                          {patient.gender}
+                        </td>
+                        <td className="px-4 py-4 md:px-6 md:py-4 text-sm text-gray-700 hidden lg:table-cell">
+                          {patient.tests.join(", ")}
+                        </td>
+                        <td className="px-4 py-4 md:px-6 md:py-4 whitespace-nowrap text-sm font-medium">
+                          <button
+                            onClick={() => handleSelectPatient(patient)}
+                            className="text-blue-600 hover:text-blue-800 text-sm md:text-base"
+                          >
+                            Select
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
 
           {/* Report Section */}
           {selectedPatient && (
             <div className="border-t border-gray-200 pt-6">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold text-gray-800">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
+                <h2 className="text-lg md:text-xl font-semibold text-gray-800">
                   Report for {selectedPatient.name} ({selectedPatient.code})
                 </h2>
                 <button
                   onClick={toggleEditMode}
-                  className="flex items-center px-3 py-1 bg-gray-100 text-gray-700 rounded hover:bg-gray-200"
+                  className="flex items-center justify-center px-3 py-2 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 text-sm md:text-base w-full sm:w-auto"
                 >
                   <Pencil className="h-4 w-4 mr-1" />
                   {editMode ? "Preview Report" : "Edit Results"}
@@ -262,58 +264,60 @@ const Report = () => {
               {/* Edit Mode - Test Results Input */}
               {editMode && (
                 <div className="mb-6">
-                  <h3 className="text-lg font-medium text-gray-700 mb-3">
+                  <h3 className="text-base md:text-lg font-medium text-gray-700 mb-3">
                     Edit Test Results
                   </h3>
                   {selectedPatient.tests.map((test) => (
                     <div
                       key={test}
-                      className="mb-6 border border-gray-200 rounded-lg p-4"
+                      className="mb-6 border border-gray-200 rounded-lg p-3 md:p-4"
                     >
                       <h4 className="font-medium text-gray-800 mb-3">{test}</h4>
-                      <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
-                          <tr>
-                            <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                              Parameter
-                            </th>
-                            <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                              Result
-                            </th>
-                            <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                              Normal Range
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody className="bg-white divide-y divide-gray-200">
-                          {testTemplates[test]?.parameters.map(
-                            (param, index) => (
-                              <tr key={param}>
-                                <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
-                                  {param}
-                                </td>
-                                <td className="px-4 py-2 whitespace-nowrap">
-                                  <input
-                                    type="text"
-                                    className="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-400"
-                                    value={testResults[test]?.[param] || ""}
-                                    onChange={(e) =>
-                                      handleTestResultChange(
-                                        test,
-                                        param,
-                                        e.target.value
-                                      )
-                                    }
-                                  />
-                                </td>
-                                <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
-                                  {testTemplates[test].normalRanges[index]}
-                                </td>
-                              </tr>
-                            )
-                          )}
-                        </tbody>
-                      </table>
+                      <div className="overflow-x-auto">
+                        <table className="min-w-full divide-y divide-gray-200">
+                          <thead className="bg-gray-50">
+                            <tr>
+                              <th className="px-2 py-2 md:px-4 md:py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Parameter
+                              </th>
+                              <th className="px-2 py-2 md:px-4 md:py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Result
+                              </th>
+                              <th className="px-2 py-2 md:px-4 md:py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Normal Range
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody className="bg-white divide-y divide-gray-200">
+                            {testTemplates[test]?.parameters.map(
+                              (param, index) => (
+                                <tr key={param}>
+                                  <td className="px-2 py-2 md:px-4 md:py-2 whitespace-nowrap text-sm text-gray-700">
+                                    {param}
+                                  </td>
+                                  <td className="px-2 py-2 md:px-4 md:py-2 whitespace-nowrap">
+                                    <input
+                                      type="text"
+                                      className="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-400 text-sm md:text-base"
+                                      value={testResults[test]?.[param] || ""}
+                                      onChange={(e) =>
+                                        handleTestResultChange(
+                                          test,
+                                          param,
+                                          e.target.value
+                                        )
+                                      }
+                                    />
+                                  </td>
+                                  <td className="px-2 py-2 md:px-4 md:py-2 whitespace-nowrap text-sm text-gray-700">
+                                    {testTemplates[test].normalRanges[index]}
+                                  </td>
+                                </tr>
+                              )
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   ))}
                   <div className="flex justify-end">
@@ -322,7 +326,7 @@ const Report = () => {
                         generateReport();
                         setEditMode(false);
                       }}
-                      className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                      className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm md:text-base"
                     >
                       Update Report
                     </button>
@@ -332,22 +336,22 @@ const Report = () => {
 
               {/* Generated Report Preview */}
               {reportData && !editMode && (
-                <div className="border border-gray-200 rounded-lg p-6">
-                  <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-xl font-bold text-gray-800">
+                <div className="border border-gray-200 rounded-lg p-4 md:p-6">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-3">
+                    <h3 className="text-lg md:text-xl font-bold text-gray-800">
                       Pathology Report
                     </h3>
-                    <div className="flex space-x-2">
+                    <div className="flex flex-wrap gap-2">
                       <button
                         onClick={printReport}
-                        className="flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200"
+                        className="flex items-center justify-center px-3 py-2 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm md:text-base w-full md:w-auto"
                       >
                         <Printer className="h-4 w-4 mr-1" />
                         Print
                       </button>
                       <button
                         onClick={downloadReport}
-                        className="flex items-center px-3 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200"
+                        className="flex items-center justify-center px-3 py-2 bg-green-100 text-green-700 rounded hover:bg-green-200 text-sm md:text-base w-full md:w-auto"
                       >
                         <FileDown className="h-4 w-4 mr-1" />
                         Download
@@ -357,16 +361,20 @@ const Report = () => {
 
                   {/* Report Header */}
                   <div className="mb-6">
-                    <div className="flex justify-between mb-2">
+                    <div className="flex flex-col md:flex-row md:justify-between mb-2 gap-2">
                       <div>
-                        <p className="font-medium">
+                        <p className="font-medium text-sm md:text-base">
                           Patient Name: {reportData.patient.name}
                         </p>
-                        <p>Patient Code: {reportData.patient.code}</p>
+                        <p className="text-sm md:text-base">
+                          Patient Code: {reportData.patient.code}
+                        </p>
                       </div>
-                      <div className="text-right">
-                        <p>Date: {reportData.date}</p>
-                        <p>
+                      <div className="md:text-right">
+                        <p className="text-sm md:text-base">
+                          Date: {reportData.date}
+                        </p>
+                        <p className="text-sm md:text-base">
                           Age/Gender: {reportData.patient.age}/
                           {reportData.patient.gender}
                         </p>
@@ -378,57 +386,59 @@ const Report = () => {
                   <div className="mb-6">
                     {reportData.tests.map((test) => (
                       <div key={test.name} className="mb-6">
-                        <h4 className="font-medium text-gray-800 mb-2">
+                        <h4 className="font-medium text-gray-800 mb-2 text-sm md:text-base">
                           {test.name}
                         </h4>
-                        <table className="min-w-full border border-gray-200">
-                          <thead className="bg-gray-50">
-                            <tr>
-                              <th className="px-4 py-2 text-left border border-gray-200">
-                                Parameter
-                              </th>
-                              <th className="px-4 py-2 text-left border border-gray-200">
-                                Result
-                              </th>
-                              <th className="px-4 py-2 text-left border border-gray-200">
-                                Normal Range
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {test.parameters.map((param) => (
-                              <tr key={param.name}>
-                                <td className="px-4 py-2 border border-gray-200">
-                                  {param.name}
-                                </td>
-                                <td className="px-4 py-2 border border-gray-200 font-medium">
-                                  {param.result}
-                                </td>
-                                <td className="px-4 py-2 border border-gray-200">
-                                  {param.normalRange}
-                                </td>
+                        <div className="overflow-x-auto">
+                          <table className="min-w-full border border-gray-200">
+                            <thead className="bg-gray-50">
+                              <tr>
+                                <th className="px-2 py-2 md:px-4 md:py-2 text-left border border-gray-200 text-xs md:text-sm">
+                                  Parameter
+                                </th>
+                                <th className="px-2 py-2 md:px-4 md:py-2 text-left border border-gray-200 text-xs md:text-sm">
+                                  Result
+                                </th>
+                                <th className="px-2 py-2 md:px-4 md:py-2 text-left border border-gray-200 text-xs md:text-sm">
+                                  Normal Range
+                                </th>
                               </tr>
-                            ))}
-                          </tbody>
-                        </table>
+                            </thead>
+                            <tbody>
+                              {test.parameters.map((param) => (
+                                <tr key={param.name}>
+                                  <td className="px-2 py-2 md:px-4 md:py-2 border border-gray-200 text-xs md:text-sm">
+                                    {param.name}
+                                  </td>
+                                  <td className="px-2 py-2 md:px-4 md:py-2 border border-gray-200 font-medium text-xs md:text-sm">
+                                    {param.result}
+                                  </td>
+                                  <td className="px-2 py-2 md:px-4 md:py-2 border border-gray-200 text-xs md:text-sm">
+                                    {param.normalRange}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     ))}
                   </div>
 
                   {/* Footer */}
                   <div className="border-t border-gray-200 pt-4">
-                    <div className="flex justify-between">
+                    <div className="flex flex-col md:flex-row md:justify-between gap-4">
                       <div>
-                        <p className="font-medium">
+                        <p className="font-medium text-sm md:text-base">
                           Technician: [Technician Name]
                         </p>
                       </div>
-                      <div className="text-right">
-                        <p className="font-medium">
+                      <div className="md:text-right">
+                        <p className="font-medium text-sm md:text-base">
                           Pathologist: [Pathologist Name]
                         </p>
-                        <div className="mt-4">
-                          <p className="text-sm text-gray-500">
+                        <div className="mt-2 md:mt-4">
+                          <p className="text-xs md:text-sm text-gray-500">
                             Signature: ___________________
                           </p>
                         </div>
