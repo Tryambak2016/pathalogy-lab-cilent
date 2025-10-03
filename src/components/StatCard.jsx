@@ -2,7 +2,7 @@ import { ArrowUp, ArrowDown } from 'lucide-react';
 
 const StatCard = ({ title, value, change, icon, trend }) => {
   return (
-    <div className="flex items-center bg-white rounded-lg shadow-sm p-6 w-72 mx-1 my-2 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 cursor-pointer active:scale-[0.98]">
+    <div className="flex items-center bg-white rounded-lg shadow-sm p-6 w-full mx-1 my-2 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 cursor-pointer active:scale-[0.98]">
       <div className="flex items-start justify-between">
         <div>
           <p className="text-sm font-semibold text-gray-500">{title}</p>
